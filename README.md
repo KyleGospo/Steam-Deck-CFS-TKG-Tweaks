@@ -1,4 +1,4 @@
-# CFS ZEN tweaks
+# Steam Deck CFS TKG Tweaks
 
 ## Description
 
@@ -7,53 +7,28 @@ is [Completely_Fair_Scheduler (CFS)](https://en.wikipedia.org/wiki/Completely_Fa
 
 The upstream default settings are tweaked for high throughput which make the desktop applications
 unresponsive under heavy CPU loads. This project contains a script that sets the CFS to use same
-settings as the [linux-zen ](https://github.com/zen-kernel/zen-kernel) kernel does.
+settings as the [linux-tkg](https://github.com/Frogging-Family/linux-tkg) kernel does.
 
-## Getting Started
+## Installing
 
-### Dependencies
+Place `set-cfs-tkg-tweaks.sh` at this directory:
+```
+/home/deck/.local/bin/set-cfs-tkg-tweaks.sh
+```
 
-Runtime dependencies:
+Place `set-cfs-tweaks.service` at this directory:
+```
+/etc/systemd/system/set-cfs-tweaks.service
+```
 
-* bash
-* gawk
-* systemd (for systemd unit)
 
-Build dependencies:
-
-* cmake
-
-### Installing
-
-Available on [AUR](https://aur.archlinux.org/packages/cfs-zen-tweaks/).
-
-Also see [releases page](https://github.com/igo95862/cfs-zen-tweaks/releases) for built RPM and DEB packages.
-
-You can also build from source using cmake build system.
-
-### Enabling systemd unit
+## Enabling systemd unit
 
 Tweaks can be applied on boot using provided systemd unit.
 
 ```
-systemctl enable --now set-cfs-tweaks.service
+sudo systemctl enable --now set-cfs-tweaks.service
 ```
-
-### Secure Boot
-
-If you have Secure Boot the script might not be able to run. [See this thread for directions.](https://github.com/igo95862/cfs-zen-tweaks/issues/3)
-
-## Version History
-
-* 1.2.0
-    * Fixed SELinux preventing systemd unit to run on Fedora (now script resides in `/usr/sbin` directory)
-    * Gave unique name to script. (now is called `set-cfs-zen-tweaks.bash`)
-* 1.1.1
-    * Fixed systemd unit not applying tweaks after suspend or hibernate
-* 1.1.0
-    * Added support for kernels before version 5.13
-* 1.0.0
-    * Initial Release
 
 ## License
 
